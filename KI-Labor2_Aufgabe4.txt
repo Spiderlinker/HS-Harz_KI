@@ -1,0 +1,22 @@
+% Künstliche Intelligenz
+% Labor 2 - Aufgabe 4
+% Autoren:  Chris Wischeropp (u34466), 
+%           Oliver Lindemann (u33873)
+
+% Reversi - Umkehrung der Reihenfolge der Elemente in einer Liste
+reversi([],[]). % Eine leere Liste ergibt umgekehrt auch eine leere Liste
+reversi([H|T],R) :-
+    reversi(T,Z),   
+    append(Z,[H],R).
+
+% insert - Element in jede mögliche Position in die gegebene Liste einfügen
+insert(X,[],[X]). % leere List -> X als Liste zurückgeben 
+insert(X,[H|T],[X,H|T]). % X als erstes Element hinzufügen
+insert(X,[H|T],[H|T2]) :- % X als zweites oder weiteres Element hinzufügen
+    insert(X,T,T2).
+    
+% permutation
+permutation([],[]). % Leere Liste gibt leere Liste zurück
+permutation([H|T],L) :-
+    permutation(T,L2), % Durch Liste laufen
+    insert(H,L2,L).
