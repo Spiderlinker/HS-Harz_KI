@@ -1,0 +1,56 @@
+<HTML>
+<HEAD>
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-1">
+</HEAD>
+
+<BODY BGCOLOR="orange">
+<CENTER>
+  <H3>Laboraufgaben zu <EM>Künstliche Intelligenz</EM></H3>
+  <A HREF="http://fstolzenburg.hs-harz.de/">Frieder Stolzenburg</A><BR>
+  Abgabe bis spätestens zwei Tage vor dem nächsten Labor
+</CENTER>
+
+<P><B>AUFGABE 4:</B>
+Schreiben Sie Prädikate in Prolog, die den folgenden Definitionen
+genügen:</P>
+
+<OL>
+   <LI> <EM>reversi(L,R)</EM> :- Die Liste <EM>R</EM> enthält die
+	Elemente der Liste <EM>L</EM> in umgekehrter Reihenfolge.
+   <LI> <EM>insert(X,L1,L2)</EM> :- Das Element <EM>X</EM> ist an
+	irgendeiner Stelle vor, in oder hinter der Liste
+	<EM>L1</EM> eingefügt. Das Ergebnis ist die Liste
+	<EM>L2</EM>.<BR>
+	Für <EM>X = x</EM> und <EM>L1 = [a,b]</EM> ergeben sich
+	für <EM>L2</EM> etwa die Lösungen <EM>[x,a,b]</EM>,
+	<EM>[a,x,b]</EM> und <EM>[a,b,x]</EM>.
+   <LI> <EM>permutation(L1,L2)</EM> :- <EM>L2</EM> ist eine
+	Permutation der Liste <EM>L1</EM>.<BR>
+	Für <EM>L1 = [a,b,c]</EM> z.B. besitzt <EM>L2</EM> die 
+	Lösungen <EM>[a,b,c]</EM>, <EM>[a,c,b]</EM>, 
+	<EM>[b,a,c]</EM>, <EM>[b,c,a]</EM>, <EM>[c,a,b]</EM>,
+	<EM>[c,b,a]</EM>.<BR>
+	Sie können hierzu das Prädikat <EM>insert</EM> ausnutzen.
+</OL>
+
+<P><B>AUFGABE 5:</B> <!-- Prolog 1997: 2.3 -->
+Die Datenstruktur Menge ist in Prolog nicht vordefiniert.
+Naheliegenderweise können Mengen durch Listen dargestellt werden.
+Beachten Sie aber, dass sowohl die Reihenfolge der Elemente als
+auch Mehrfachvorkommen ein und desselben Elementes keine Rolle
+spielen dürfen. Schreiben Sie Prozeduren, die folgenden
+Beschreibungen genügen (zumindest für Anfragen ohne
+Variablen)!</P>
+
+<OL>
+   <LI> <EM>alldistinct(M)</EM> :- <EM>M</EM> ist eine echte
+	Menge, d.h. enthält nur verschiedene Elemente.
+   <LI> <EM>subtract(A,B,C)</EM> :-  Die Menge <EM>C</EM> ist die
+        Menge <EM>A\B</EM> (Mengendifferenz).
+   <LI> <EM>disjoint(A,B)</EM> :- Die Mengen <EM>A</EM> und
+        <EM>B</EM> sind disjunkt.
+</OL>
+
+<B>Hinweis:</B> Verwenden Sie ggf. Cut (!), Negation (\+) oder If-Then-Else (-> ;). 
+</BODY>
+</HTML>

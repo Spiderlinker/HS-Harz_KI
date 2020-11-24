@@ -1,0 +1,60 @@
+<HTML>
+<HEAD>
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-1">
+</HEAD>
+
+<BODY BGCOLOR="orange">
+<CENTER>
+  <H3>Laboraufgaben zu <EM>Künstliche Intelligenz</EM></H3>
+  <A HREF="http://www.hs-harz.de/fstolzenburg">Frieder Stolzenburg</A><BR>
+  Abgabe bis spätestens zwei Tage vor dem nächsten Labor
+</CENTER>
+
+<P><B>AUFGABE 1:</B>
+Schreiben Sie ein Prolog-Programm (Fakten und Regeln), das mit
+einem Stammbaum (siehe unten) umgehen kann. Dabei bezeichnen
+Linien die Eltern-Kind-Relation. &amp; bedeutet <EM>ist
+verheiratet mit</EM>. Definieren Sie diese beiden Relationen in
+Form von Fakten. Das Geschlecht der Person sollte auch
+festgehalten werden. Schreiben Sie nun Regeln für die Vater-,
+Geschwister-, Schwester-, Großmutter- und Tantenrelation.</P>
+<IMG SRC="stamm.gif">
+
+<P><B>AUFGABE 2:</B> 
+Schreiben Sie ein Prolog-Programm und zwei Anfragen, welche feststellen, ob (a)
+die alten Bundesländer (Baden-Württemberg, Bayern, Bremen, Hamburg, Hessen,
+Niedersachsen, Nordrhein-Westfalen, Rheinland-Pfalz, Saarland,
+Schleswig-Holstein) und (b) die neuen Bundesländer (Berlin, Brandenburg,
+Mecklenburg-Vorpommern, Sachsen, Sachsen-Anhalt, Thüringen) von Deutschland so
+mit den 3 Farben rot, gelb und blau eingefärbt werden können, dass keine
+benachbarten Bundesländer die gleiche Farbe haben. Welche Lösungen werden
+gefunden? (c) Lassen sich alle Bundesländer mit nur 3 Farben auf die o.g. Weise
+einfärben?</P>
+<IMG SRC="map.gif">
+
+<P><B>AUFGABE 3:</B>  <!-- Frühwirth & Abdennadher: A.3.6 -->
+Kryptoarithmetische Rätsel sind Darstellungen arithmetischer
+Berechnungen, bei denen die Ziffern durch Buchstaben
+verschlüsselt sind. Es gilt, diese Rechnungen zu rekonstruieren,
+wobei zu beachten ist, dass gleiche Buchstaben gleichen Ziffern
+und verschiedene Buchstaben verschiedenen Ziffern entsprechen.
+Außerdem darf für einen Buchstaben nicht 0 eingesetzt werden,
+wenn er an führender Stelle steht. Schreiben Sie ein
+Prolog-Programm, welches das folgende klassische Rätsel löst.
+Geben Sie auch die Lösung des Rätsels an! Wie lange braucht Ihr
+Programm, bis die Lösung gefunden wird?</P>
+
+<PRE>
+  S E N D
++ M O R E
+---------
+M O N E Y
+</PRE>
+
+<B>Hinweise:</B> Verwenden Sie die eingebauten Prädikate <EM>is/2</EM>, welches
+das Ergebnis einer Berechung einer Variablen zuweist, z.B. <EM>X is 2*Y+1</EM>,
+und <EM>=:=</EM>, welches die Werte zweier arithmetische Ausdrücke miteinander
+vergleicht. - In SWI-Prolog kann die Rechenzeit ermittelt werden, indem Sie die
+betreffende Anfrage als Argument von <EM>time</EM> aufrufen. 
+</BODY>
+</HTML>
