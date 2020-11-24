@@ -1,0 +1,28 @@
+% Künstliche Intelligenz
+% Labor 2 - Aufgabe 5
+% Autoren:  Chris Wischeropp (u34466), 
+%           Oliver Lindemann (u33873)
+
+% alldistinct - Pruefe, ob Liste eine Menge ist
+alldistinct([]). % Eine leere Liste ist distinkt
+alldistinct([H|T]) :-
+    \+ member(H, T), % Stelle sicher, dass H NICHT (\+) in der restlichen Liste vorkommt
+    alldistinct(T). % Prüfe den Tail auf Dopplungen
+       
+% subtract - Differenzmenge berechnen
+subtract([], _, []). % _ = irgendein Element (Liste / Variable)
+% Durch L2 iterieren und H entfernen, wenn es in L2 vorhanden ist
+subtract([H|T], L2, L3) :-
+        member(H, L2),
+        !,
+        subtract(T, L2, L3).
+% H aus L2 entfernen
+subtract([H|T1], L2, [H|T2]) :-
+        subtract(T1, L2, T2). % Rekursiver Aufruf ohne H, also H wurde damit entfernt
+
+% disjoint - Sind beide Mengen disjunkt?
+disjoint([],[H|T]). % Eine leere Menge und eine nicht-leere Menge sind disjunkt
+disjoint([],[]). % Sind zwei leere Mengen disjunkt?  
+disjoint([H|T],B) :- 
+    \+ member(H, B), % Prüfen, ob H NICHT in B enthalten ist
+    disjoint(T,B). % Durch 1. Liste iterieren
