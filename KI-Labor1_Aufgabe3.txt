@@ -1,0 +1,61 @@
+% Künstliche Intelligenz
+% Labor 1 - Aufgabe 3
+% Autoren:  Chris Wischeropp (u34466), 
+%           Oliver Lindemann (u33873)
+
+digit(0).
+digit(1).
+digit(2).
+digit(3).
+digit(4).
+digit(5).
+digit(6).
+digit(7).
+digit(8).
+digit(9).
+
+solution(S,E,N,D,M,O,R,Y) :- 
+    digit(S),S>0, % keine führende 0
+    digit(E),
+    S \== E,
+    
+    digit(N),
+    S \== N,
+    E \== N,
+    
+    digit(D),
+    S \== D,
+    E \== D,
+    N \== D,
+    
+    digit(M),M>0, % keine führende 0
+    S \== M,
+    E \== M,
+    N \== M,
+    D \== M,
+    
+    digit(O),
+    S \== O,
+    E \== O,
+    N \== O,
+    D \== O,
+    M \== O,
+    
+    digit(R),
+    S \== R,
+    E \== R,
+    N \== R,
+    D \== R,
+    M \== R,
+    O \== R,
+    
+    digit(Y),
+    S \== Y,
+    E \== Y,
+    N \== Y,
+    D \== Y,
+    M \== Y,
+    O \== Y,
+    R \== Y,
+    
+    (S*1000 + E*100 + N*10 + D + M*1000 + O*100 + R*10 + E) =:= (M*10000 + O*1000 + N*100 + E*10 + Y).
