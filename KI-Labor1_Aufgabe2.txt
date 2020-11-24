@@ -1,0 +1,88 @@
+% Künstliche Intelligenz
+% Labor 1 - Aufgabe 2
+% Autoren:  Chris Wischeropp (u34466), 
+%           Oliver Lindemann (u33873)
+
+% Prolog-Bundeslaender
+
+% BB 	Brandenburg 	Potsdam 	
+% BE 	Berlin 	Berlin 	 
+% BW 	Baden-Württemberg 	Stuttgart 	 
+% BY 	Bayern 	München 	 
+% HB 	Bremen 	Bremen 	 
+% HE 	Hessen 	Wiesbaden 	 
+% HH 	Hamburg 	Hamburg 	 
+% MV 	Mecklenburg-Vorpommern 	Schwerin 	
+% NI 	Niedersachsen 	Hannover 	 
+% NW 	Nordrhein-Westfalen 	Düsseldorf 	
+% RP 	Rheinland-Pfalz 	Mainz 	 
+% SH 	Schleswig-Holstein 	Kiel 	 
+% SL 	Saarland 	Saarbrücken 	
+% SN 	Sachsen 	Dresden 	 
+% ST 	Sachsen-Anhalt 	Magdeburg 	 
+% TH 	Thüringen 	Erfurt
+
+karteAlle(BB,BE,BW,BY,HB,HE,HH,MV,NI,NW,RP,SH,SL,SN,ST,TH) :- 
+    nachbar(BB, MV),
+    nachbar(BB, NI),
+    nachbar(BB, ST),
+    nachbar(BB, BE),
+    nachbar(BB, SN),
+    nachbar(BW, BY),
+    nachbar(BW, HE),
+    nachbar(BW, RP),
+    nachbar(HB, NI),
+    nachbar(HE, RP),
+    nachbar(HE, NW),
+    nachbar(HE, NI),
+    nachbar(HE, TH),
+    nachbar(HE, BY),
+    nachbar(HH, SH),
+    nachbar(HH, NI),
+    nachbar(MV, SH),
+    nachbar(MV, NI),
+    nachbar(NI, NW),
+    nachbar(NI, SH),
+    nachbar(NI, ST),
+    nachbar(NI, TH),
+    nachbar(NW, RP),
+    nachbar(RP, SL),
+    nachbar(SN, ST),
+    nachbar(SN, BY),
+    nachbar(SN, TH),
+    nachbar(ST, TH).
+    
+alt(BW,BY,HB,HH,HE,NI,NW,RP,SL,SH) :-                       
+    nachbar(BW, BY),
+    nachbar(BW, HE),
+    nachbar(BW, RP),     
+    nachbar(HB, NI),
+    nachbar(HE, RP),
+    nachbar(HE, NW),
+    nachbar(HE, NI),
+    nachbar(HE, TH),
+    nachbar(HE, BY),
+    nachbar(HH, SH),
+    nachbar(HH, NI),
+    nachbar(NI, NW),
+    nachbar(NI, SH),
+    nachbar(NI, TH),
+    nachbar(NW, RP),
+    nachbar(RP, SL).
+
+neu(MV,BB,BE,ST,SA) :- 
+    nachbar(MV,BB),
+    nachbar(BB,BE),
+    nachbar(BB,ST),
+    nachbar(BB,SA),
+    nachbar(ST,SA).
+
+farbe(rot).
+farbe(gelb).
+farbe(blau).
+farbe(weiss).
+
+nachbar(X,Y) :-
+    farbe(X),
+    farbe(Y),
+    X\==Y.
