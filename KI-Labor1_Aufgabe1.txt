@@ -1,0 +1,92 @@
+% Künstliche Intelligenz
+% Labor 1 - Aufgabe 1
+% Autoren:  Chris Wischeropp (u34466), 
+%           Oliver Lindemann (u33873)
+
+% Prolog-Stammbaumprogramm
+
+% male(X) :- "X ist männlich"
+male(heinrich).
+male(willi).
+male(ulrich).
+male(herbert).
+male(otto).
+
+% female(X) :- "X ist weiblich"
+female(maria).
+female(inge).
+female(ulrike).
+female(gerda).
+
+% parent(X,Y) :- "X ist Vater von Y"
+parent(maria,heinrich,willi).
+parent(maria,heinrich,gerda).
+parent(inge,willi,ulrich).
+parent(inge,willi,ulrike).
+parent(gerda,herbert,otto).
+
+% married(X,Y) :- "X ist verheiratet mit Y"
+married(maria,heinrich).
+married(heinrich,maria).
+married(inge,willi).
+married(willi,inge).
+married(gerda,herbert).
+married(herbert,gerda).
+
+% Vater-Relation
+father(V,S) :- % V ist Vater von S
+	male(V),
+	parent(M,V,S).
+
+% Mutter-Relation
+mother(M,S) :- % X ist Mutter von Y
+	female(M),
+	parent(M,F,S).
+
+% Bruder-Relation
+brother(X,Y) :-
+	male(X),
+	parent(M,V,X),
+	parent(M,V,Y),
+	X \== Y.	% eingebautes Prädikat
+
+% Schwester-Relation
+sister(X,Y) :-
+	female(X),
+	parent(M,V,X),
+	parent(M,V,Y),
+	X \== Y.	% eingebautes Prädikat
+	
+% Geschwister-Relation
+sibling(X, Y) :-
+	parent(M,V,X),
+	parent(M,V,Y),
+	X \== Y.	% eingebautes Prädikat
+	
+% granny(X,Y) :- X ist Großmutter von Y
+granny(Granny,Granchi) :-
+	mother(Granny,Mother),
+	parent(Mother,Father,Granchi).
+granny(Granny,Granchi) :-
+	mother(Granny,Father),
+	parent(Mother,Father,Granchi).
+	
+% aunt(X,Y) :- X ist Tante von Y
+aunt(Tante,Neffe) :-
+	parent(Mother,Father,Neffe),
+	sister(Tante,Mother).
+aunt(Tante,Neffe) :-
+	parent(Mother,Father,Neffe),
+	sister(Tante,Father).
+aunt(Tante,Neffe) :-
+	parent(Mother,Father,Neffe),
+	sibling(Sibling,Mother),
+	married(Tante, Sibling),
+	female(Tante).
+aunt(Tante,Neffe) :-
+	parent(Mother,Father,Neffe),
+	sibling(Sibling,Father),
+	married(Tante, Sibling),
+	female(Tante).
+
+
