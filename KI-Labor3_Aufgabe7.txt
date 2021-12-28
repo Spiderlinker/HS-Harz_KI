@@ -1,0 +1,71 @@
+% Künstliche Intelligenz
+% Labor 3 - Aufgabe 7
+% Autoren:  Chris Wischeropp (u34466), 
+%           Oliver Lindemann (u33873)
+
+:- set_prolog_flag(answer_write_options,[max_depth(100)]).
+
+init(S).
+
+edge(s, i01).
+edge(s, i11).
+edge(i01, i02).
+%edge(i01, i12).    % auskommentieren für I != I'
+edge(i02, i03).
+%edge(i02, i13).    % auskommentieren für I != I'
+%edge(i11, i02).    % auskommentieren für I != I'
+edge(i11, i12).
+%edge(i12, i03).    % auskommentieren für I != I'
+edge(i12, i13).
+edge(i13, c1).
+edge(c1, c2).
+edge(c2, c1).
+edge(c2, t1).
+edge(t1, t2).
+edge(t1, t3).
+
+% Suchtyp: Breiten/Tiefensuche
+% Suchtyp = b: Breitensuche: search(b,X).
+% Suchtyp = t: Tiefensuche: search(t,X).
+search(Suchtyp,Paths) :- 
+        Suchtyp == 'b',
+        breitensuche(s,Paths).
+search(Suchtyp,Paths) :- 
+        Suchtyp == 't',
+        tiefensuche(s,Paths).
+
+% ========================
+% ===== Breitensuche =====
+% ========================
+breitensuche(Start,Paths):-
+         breitensuche([Start],[],Paths).
+         
+breitensuche(Startlist,_,Path):-
+         Startlist=[Dst|_],
+         reverse(Startlist,Path).
+
+breitensuche(Startlist,List,Path):-
+         Startlist=[Start|_],
+         findall([Edge|Startlist],
+            (edge(Start,Edge),
+             not(member(Edge,Startlist))),
+            EdgeList),
+         append(List,EdgeList,ListNew),
+         ListNew=[PathN|RemainingPaths],
+         breitensuche(PathN,RemainingPaths,Path).
+
+% =======================
+% ===== Tiefensuche =====
+% =======================
+
+tiefensuche(Start,Paths):-
+         tiefensuche(Start,[],Paths).
+
+tiefensuche(Edge,List,Path):- 
+         reverse(List,Path).
+
+
+tiefensuche(Start,List,Path):-
+         edge(Start,Edge),
+         not(member(Edge,List)),
+         tiefensuche(Edge,[Edge|List],Path).

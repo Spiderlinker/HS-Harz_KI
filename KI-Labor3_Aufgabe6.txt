@@ -1,0 +1,47 @@
+% Künstliche Intelligenz
+% Labor 3 - Aufgabe 6
+% Autoren:  Chris Wischeropp (u34466), 
+%           Oliver Lindemann (u33873)
+
+:- set_prolog_flag(answer_write_options,[max_depth(100)]).
+
+% Alle korrekten Überfahrten
+% Links Missionar, Rechts Kannibale
+riverCross(1,0). % 1 Missionar,    0 Kannibalen
+riverCross(2,0). % 2 Missionare,   0 Kannibalen
+riverCross(1,1). % 1 Missionar,    1 Kannibale
+riverCross(0,1). % 0 Missionare,   1 Kannibale
+riverCross(0,2). % 0 Missionare,   2 Kannibalen
+
+%Überfahrt von links nach rechts
+next([[Ml1,Kl1,b],[Mr1,Kr1]],[[Ml2,Kl2],[Mr2,Kr2,b]]):-
+                    riverCross(M,K),Ml1-M  >= 0,Ml2 is Ml1-M,Kl1-K >= 0,
+                    Kl2 is Kl1-K,Mr2 is Mr1+M,Kr2 is Kr1+K,
+                    isValid(Ml1,Kl1,Mr1,Kr1,Ml2,Kl2,Mr2,Kr2).
+
+%Überfahrt von rechts nach links
+next([[Ml1,Kl1],[Mr1,Kr1,b]],[[Ml2,Kl2,b],[Mr2,Kr2]]):-
+                    riverCross(M,K),Ml2 is Ml1+M,Kl2 is Kl1+K,
+                    Mr1-M >= 0,Mr2 is Mr1-M,Kr1-K >= 0,Kr2 is Kr1-K,
+                    isValid(Ml1,Kl1,Mr1,Kr1,Ml2,Kl2,Mr2,Kr2).
+
+% Prüfen, dass die Kannibalen nicht die Missionare verspeisen                    
+isValid(Ml1,Kl1,Mr1,Kr1,Ml2,Kl2,Mr2,Kr2) :-
+                    (Ml1 >= Kl1;Ml1 =:= 0),(Mr1 >= Kr1;Mr1 =:= 0),
+                    (Ml2 >= Kl2;Ml2 =:= 0),(Mr2 >= Kr2;Mr2 =:= 0).
+                    
+% Nach Lösungen suchen
+searchSolution(Source,Destination,Solution):-
+                    searchSolution([Source],[],Destination,Solution).
+searchSolution(Path,Paths,Destination,Solution):-
+                    Path=[Destination|_],
+                    Path=Solution,
+                    !.
+searchSolution(Path,Paths,Destination,Solution):-
+                    Path=[NodeA|_],
+                    findall([NodeN|Path],
+                            (next(NodeA,NodeN),not(member(NodeN,Path))),
+                            FoundPaths),
+                    append(Paths,FoundPaths,NewPaths),
+                    NewPaths=[PathN|RemainingPaths],
+                    searchSolution(PathN,RemainingPaths,Destination,Solution).
